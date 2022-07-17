@@ -16,9 +16,11 @@ public class OmnifurnaceScreen extends AbstractContainerScreen<OmnifurnaceMenu> 
         super(pMenu, pPlayerInventory, pTitle);
     }
 
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
-        this.renderBackground(pPoseStack);
-        this.renderBg(pPoseStack, pPartialTick, pMouseX, pMouseY);
+    @Override
+    public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
+        renderBackground(pPoseStack);
+        super.render(pPoseStack, mouseX, mouseY, delta);
+        renderTooltip(pPoseStack, mouseX, mouseY);
     }
 
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pX, int pY) {

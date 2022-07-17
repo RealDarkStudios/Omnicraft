@@ -2,6 +2,7 @@ package net.darkstudios.omnicraft.recipes.custom;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import net.darkstudios.omnicraft.block.ModBlocks;
 import net.darkstudios.omnicraft.recipes.custom.serializer.OmnifurnaceSerializer;
 import net.minecraft.core.Registry;
@@ -102,7 +103,7 @@ public class OmnifurnaceRecipe extends AbstractCookingRecipe implements Containe
             JsonElement jsonelement = (JsonElement)(GsonHelper.isArrayNode(pJson, "ingredient") ? GsonHelper.getAsJsonArray(pJson, "ingredient") : GsonHelper.getAsJsonObject(pJson, "ingredient"));
             Ingredient ingredient = Ingredient.fromJson(jsonelement);
             //Forge: Check if primitive string to keep vanilla or a object which can contain a count field.
-            if (!pJson.has("result")) throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
+            if (!pJson.has("result")) throw new JsonSyntaxException("Missing result, expected to find a string or object");
             ItemStack itemstack;
             if (pJson.get("result").isJsonObject()) itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
             else {

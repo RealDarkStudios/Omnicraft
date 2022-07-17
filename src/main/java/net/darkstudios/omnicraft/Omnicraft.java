@@ -36,7 +36,6 @@ public class Omnicraft {
 
         ModRecipes.register(eventBus);
 
-
         MinecraftForge.EVENT_BUS.register(this);
     }
 
